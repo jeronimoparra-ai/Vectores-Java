@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A complete educational guide to Java vectors (arrays). Learn declarations, loops, search, min/max, averages, filtering, and more with clear explanations and code examples." />
+  <title>Learn Java: Vectors, Methods, and Programming Logic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<header class="nav" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-icon" aria-hidden="true">☕</div>
+        Java Vectors
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#what-is-vector">Concepts</a></li>
+        <li><a href="#key-concepts">Keys</a></li>
+        <li><a href="#flow">Flow</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#walkthrough">Walkthrough</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#glossary" class="nav-cta">Glossary</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="#intro">Introduction</a>
+      <a href="#what-is-vector">What is a Vector?</a>
+      <a href="#key-concepts">Key Concepts</a>
+      <a href="#flow">Program Flow</a>
+      <a href="#methods">Methods</a>
+      <a href="#walkthrough">Code Walkthrough</a>
+      <a href="#analysis">Code Analysis</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#glossary">Glossary</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero" class="hero">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left column -->
+      <div>
+        <div class="hero-badges">
+          <span class="badge badge-blue">☕ Java</span>
+          <span class="badge badge-green">✅ Beginner Friendly</span>
+          <span class="badge badge-purple">📚 Educational</span>
+        </div>
+
+        <h1 class="hero-title">
+          Learn Java:<br />
+          <span>Vectors, Methods,</span><br />
+          and Programming Logic
+        </h1>
+
+        <p class="hero-desc">
+          A complete, beginner-friendly guide to working with integer arrays in Java.
+          Understand how to create, fill, search, and process vectors with clean code
+          and clear explanations.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#intro" class="btn btn-primary">
+            ▶ Start Learning
+          </a>
+          <a href="#methods" class="btn btn-outline">
+            📋 View Methods
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column – facts card -->
+      <div>
+        <div class="facts-card">
+          <p class="facts-card-title">📊 Project at a Glance</p>
+          <div class="facts-grid">
+            <div class="fact-item">
+              <span class="fact-value accent-blue">15</span>
+              <span class="fact-label">Vector elements</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-value accent-green">8</span>
+              <span class="fact-label">Methods covered</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-value accent-purple">10–100</span>
+              <span class="fact-label">Value range</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-value accent-orange">10</span>
+              <span class="fact-label">Key concepts</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="vector-analogy" style="margin-top:1.25rem;">
+          <div class="vector-analogy-label">💡 Quick Preview</div>
+          <div class="array-visual">
+            <p class="array-visual-label">// int[] vector = new int[15];</p>
+            <div class="array-cells" aria-label="Visual representation of an integer array">
+              <div class="array-cell"><div class="cell-box">42</div><span class="cell-index">[0]</span></div>
+              <div class="array-cell"><div class="cell-box">17</div><span class="cell-index">[1]</span></div>
+              <div class="array-cell"><div class="cell-box">89</div><span class="cell-index">[2]</span></div>
+              <div class="array-cell"><div class="cell-box">55</div><span class="cell-index">[3]</span></div>
+              <div class="array-cell"><div class="cell-box">31</div><span class="cell-index">[4]</span></div>
+              <div class="array-cell"><div class="cell-box">76</div><span class="cell-index">[5]</span></div>
+              <div class="array-cell"><div class="cell-box">…</div><span class="cell-index">[…]</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTRODUCTION
+     ============================================================ -->
+<section id="intro" class="section">
+  <div class="container">
+    <p class="section-label">Introduction</p>
+    <h2 class="section-title">What will you learn here?</h2>
+    <p class="section-subtitle">
+      This guide walks you through a complete Java program that manipulates a vector of 15 integers.
+      You will understand the logic, the syntax, and the real-world usefulness of every single piece.
+    </p>
+
+    <div class="intro-grid">
+      <div>
+        <div class="intro-card">
+          <div class="intro-card-icon" aria-hidden="true">🎯</div>
+          <h3>Purpose of this guide</h3>
+          <p>
+            Arrays (called <em>vectors</em> in academic contexts) are one of the fundamental
+            data structures in programming. Mastering them unlocks your ability to work with
+            collections of data, process lists, and build algorithms.
+          </p>
+          <br />
+          <p>
+            This site explains a well-structured Java class called
+            <code>OperacionesVector</code> that performs common operations on an integer
+            array. Every method is explained in plain language with annotated code examples.
+          </p>
+        </div>
+
+        <div class="intro-card" style="margin-top:1.25rem;">
+          <div class="intro-card-icon" style="background:rgba(63,185,80,.1);border-color:rgba(63,185,80,.2);" aria-hidden="true">🚀</div>
+          <h3>Why vectors matter</h3>
+          <p>
+            Real-world applications store thousands of values — student grades, product prices,
+            sensor readings. Vectors let you work with many values using a single variable name
+            and a loop, making your code concise and powerful.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="intro-card" style="height:100%;">
+          <div class="intro-card-icon" style="background:rgba(188,140,255,.1);border-color:rgba(188,140,255,.2);" aria-hidden="true">📖</div>
+          <h3>What you will learn</h3>
+          <ul class="intro-learn-list">
+            <li><span class="check-icon" aria-hidden="true">✓</span> Declare and create an integer array of fixed size</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Fill it with values in a specific range using loops</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Display all elements in a readable format</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Search for a specific value inside the array</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Find the maximum and minimum values</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Calculate the sum and average of all elements</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Identify and display multiples of a given number</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Build a new filtered array with values above average</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Understand key programming concepts: loops, conditions, return</li>
+            <li><span class="check-icon" aria-hidden="true">✓</span> Read and interpret Java code confidently</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     WHAT IS A VECTOR
+     ============================================================ -->
+<section id="what-is-vector" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Fundamentals</p>
+    <h2 class="section-title">What is a Vector?</h2>
+    <p class="section-subtitle">
+      In Java, a <strong>vector</strong> (or array) is a container that stores multiple values
+      of the same data type under a single variable name.
+    </p>
+
+    <div class="vector-explain">
+      <!-- Left: explanation + analogy + visual -->
+      <div>
+        <p style="color:var(--text-secondary);margin-bottom:1rem;">
+          Think of a vector as a row of numbered <strong>mailboxes</strong> at an apartment
+          building. Each mailbox (called a <em>cell</em>) holds exactly one value, and each
+          has a unique number — called an <em>index</em> — starting from zero.
+        </p>
+        <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+          Instead of creating fifteen separate variables (<code>n1</code>, <code>n2</code>,
+          …&nbsp;<code>n15</code>), you create one array and access any value using its index:
+          <code>vector[0]</code>, <code>vector[7]</code>, etc.
+        </p>
+
+        <div class="vector-analogy">
+          <div class="vector-analogy-label">🏠 Analogy: the apartment mailboxes</div>
+          <p style="font-size:.875rem;color:var(--text-secondary);">
+            Imagine a building with 15 mailboxes, numbered 0 to 14. Each mailbox stores a
+            single letter (an integer). The building is the array. The mailboxes are the
+            cells. The mailbox numbers are the indices. The letters inside are the values.
+          </p>
+        </div>
+
+        <div class="array-visual" style="margin-top:1.75rem;">
+          <p class="array-visual-label">// Visual: int[15] with example values</p>
+          <div class="array-cells" aria-label="Array cells showing indices 0 through 14">
+            <div class="array-cell"><div class="cell-box">42</div><span class="cell-index">[0]</span></div>
+            <div class="array-cell"><div class="cell-box">17</div><span class="cell-index">[1]</span></div>
+            <div class="array-cell"><div class="cell-box">89</div><span class="cell-index">[2]</span></div>
+            <div class="array-cell"><div class="cell-box">55</div><span class="cell-index">[3]</span></div>
+            <div class="array-cell"><div class="cell-box">31</div><span class="cell-index">[4]</span></div>
+            <div class="array-cell"><div class="cell-box">76</div><span class="cell-index">[5]</span></div>
+            <div class="array-cell"><div class="cell-box">14</div><span class="cell-index">[6]</span></div>
+            <div class="array-cell"><div class="cell-box">63</div><span class="cell-index">[7]</span></div>
+            <div class="array-cell"><div class="cell-box">28</div><span class="cell-index">[8]</span></div>
+            <div class="array-cell"><div class="cell-box">97</div><span class="cell-index">[9]</span></div>
+            <div class="array-cell"><div class="cell-box">45</div><span class="cell-index">[10]</span></div>
+            <div class="array-cell"><div class="cell-box">72</div><span class="cell-index">[11]</span></div>
+            <div class="array-cell"><div class="cell-box">38</div><span class="cell-index">[12]</span></div>
+            <div class="array-cell"><div class="cell-box">19</div><span class="cell-index">[13]</span></div>
+            <div class="array-cell"><div class="cell-box">84</div><span class="cell-index">[14]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: syntax breakdown -->
+      <div>
+        <div class="syntax-breakdown">
+          <div class="syntax-code-header">
+            <div class="dot dot-red" aria-hidden="true"></div>
+            <div class="dot dot-yellow" aria-hidden="true"></div>
+            <div class="dot dot-green" aria-hidden="true"></div>
+            <span>Vector.java</span>
+          </div>
+          <div class="syntax-code-body">
+<span class="tk-cm">// Declaration and creation</span>
+<span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">vector</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-num">15</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Access by index</span>
+<span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-num">42</span><span class="tk-punc">;</span>     <span class="tk-cm">// first cell</span>
+<span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-num">14</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-num">84</span><span class="tk-punc">;</span>    <span class="tk-cm">// last cell</span>
+
+<span class="tk-cm">// Length</span>
+<span class="tk-type">int</span> <span class="tk-var">size</span> <span class="tk-op">=</span> <span class="tk-var">vector</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-cm">// 15</span>
+          </div>
+          <ul class="syntax-breakdown-list">
+            <li>
+              <span class="syntax-term">int[]</span>
+              <span style="font-size:.85rem;color:var(--text-secondary);">
+                Declares an array that will hold integers.
+              </span>
+            </li>
+            <li>
+              <span class="syntax-term">vector</span>
+              <span style="font-size:.85rem;color:var(--text-secondary);">
+                The name of the variable. You can choose any valid Java identifier.
+              </span>
+            </li>
+            <li>
+              <span class="syntax-term">new int[15]</span>
+              <span style="font-size:.85rem;color:var(--text-secondary);">
+                Allocates memory for exactly 15 integer cells, all initialized to 0.
+              </span>
+            </li>
+            <li>
+              <span class="syntax-term">vector[i]</span>
+              <span style="font-size:.85rem;color:var(--text-secondary);">
+                Accesses the cell at position <code>i</code>. Valid indices: 0 to 14.
+              </span>
+            </li>
+            <li>
+              <span class="syntax-term">vector.length</span>
+              <span style="font-size:.85rem;color:var(--text-secondary);">
+                A built-in property that returns the size of the array (15).
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="walkthrough-explain" style="margin-top:1.25rem;">
+          <h4>⚠️ Important: Index starts at 0</h4>
+          <p>
+            The first element is <code>vector[0]</code>, not <code>vector[1]</code>.
+            The last element of a 15-element array is <code>vector[14]</code>.
+            Trying to access <code>vector[15]</code> will throw an
+            <code>ArrayIndexOutOfBoundsException</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     KEY CONCEPTS
+     ============================================================ -->
+<section id="key-concepts" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Vocabulary</p>
+    <h2 class="section-title">Key Concepts</h2>
+    <p class="section-subtitle">
+      Every concept below appears directly in the Java program.
+      Understanding them is the foundation for reading any Java code.
+    </p>
+
+    <div class="concepts-grid">
+
+      <!-- vector -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">vector / array</span>
+          <span class="badge badge-blue">Data Structure</span>
+        </div>
+        <p class="concept-def">A fixed-size container holding values of the same type.</p>
+        <p class="concept-explanation">
+          An array stores multiple values under one variable name. Each value occupies a
+          numbered slot called an index. In Java, the size is fixed at creation time.
+        </p>
+        <pre class="concept-example"><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">notas</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-num">5</span><span class="tk-punc">]</span><span class="tk-punc">;</span></pre>
+      </article>
+
+      <!-- index -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">index</span>
+          <span class="badge badge-green">Access</span>
+        </div>
+        <p class="concept-def">The position number of an element inside the array.</p>
+        <p class="concept-explanation">
+          Indices start at <strong>0</strong>. In an array of 15 elements, valid indices
+          go from 0 to 14. Using an out-of-range index causes a runtime error.
+        </p>
+        <pre class="concept-example"><span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span>  <span class="tk-cm">// first element</span>
+<span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-num">14</span><span class="tk-punc">]</span> <span class="tk-cm">// last element</span></pre>
+      </article>
+
+      <!-- method -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">method</span>
+          <span class="badge badge-purple">OOP</span>
+        </div>
+        <p class="concept-def">A named block of code that performs a specific task.</p>
+        <p class="concept-explanation">
+          Methods group reusable logic. You define a method once and call it many times.
+          This avoids repeating the same code and makes programs easier to read and maintain.
+        </p>
+        <pre class="concept-example"><span class="tk-kw">public</span> <span class="tk-type">void</span> <span class="tk-fn">mostrarVector</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-cm">// display logic here</span>
+<span class="tk-punc">}</span></pre>
+      </article>
+
+      <!-- parameter -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">parameter</span>
+          <span class="badge badge-orange">Input</span>
+        </div>
+        <p class="concept-def">A variable that receives data when a method is called.</p>
+        <p class="concept-explanation">
+          Parameters are declared inside the method's parentheses. They act as local
+          variables that hold the values passed by the caller. They make methods flexible
+          and reusable.
+        </p>
+        <pre class="concept-example"><span class="tk-cm">// "v" and "valor" are parameters</span>
+<span class="tk-type">boolean</span> <span class="tk-fn">buscarValor</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">,</span> <span class="tk-type">int</span> <span class="tk-var">valor</span><span class="tk-punc">)</span></pre>
+      </article>
+
+      <!-- return -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">return</span>
+          <span class="badge badge-blue">Output</span>
+        </div>
+        <p class="concept-def">Sends a result back from a method to the caller.</p>
+        <p class="concept-explanation">
+          When a method finishes its calculation, <code>return</code> passes the result
+          back. The type of the returned value must match the method's declared return type.
+          A <code>void</code> method returns nothing.
+        </p>
+        <pre class="concept-example"><span class="tk-kw">return</span> <span class="tk-var">suma</span><span class="tk-punc">;</span>   <span class="tk-cm">// returns an int</span>
+<span class="tk-kw">return</span> <span class="tk-kw">true</span><span class="tk-punc">;</span>   <span class="tk-cm">// returns a boolean</span></pre>
+      </article>
+
+      <!-- for -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">for</span>
+          <span class="badge badge-green">Loop</span>
+        </div>
+        <p class="concept-def">A control structure that repeats a block of code a set number of times.</p>
+        <p class="concept-explanation">
+          When working with arrays, a <code>for</code> loop visits every element from index
+          0 to <code>length - 1</code>. It eliminates repetitive code when processing
+          many elements.
+        </p>
+        <pre class="concept-example"><span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-cm">// v[i] is the current element</span>
+<span class="tk-punc">}</span></pre>
+      </article>
+
+      <!-- if -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">if</span>
+          <span class="badge badge-orange">Condition</span>
+        </div>
+        <p class="concept-def">Executes a block of code only when a condition is true.</p>
+        <p class="concept-explanation">
+          Decision-making is essential in every program. <code>if</code> lets the program
+          choose a path based on whether a condition evaluates to <code>true</code> or
+          <code>false</code>. It is used for comparisons, validations, and filtering.
+        </p>
+        <pre class="concept-example"><span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">mayor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></pre>
+      </article>
+
+      <!-- boolean -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">boolean</span>
+          <span class="badge badge-purple">Type</span>
+        </div>
+        <p class="concept-def">A data type that holds only <code>true</code> or <code>false</code>.</p>
+        <p class="concept-explanation">
+          Booleans represent yes/no decisions. They are used as flags to track whether
+          something happened — like finding a value, or whether any multiples were found.
+        </p>
+        <pre class="concept-example"><span class="tk-type">boolean</span> <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">false</span><span class="tk-punc">;</span>
+<span class="tk-cm">// set to true when found</span>
+<span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">true</span><span class="tk-punc">;</span></pre>
+      </article>
+
+      <!-- Scanner -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">Scanner</span>
+          <span class="badge badge-blue">Input</span>
+        </div>
+        <p class="concept-def">A Java class for reading user input from the keyboard.</p>
+        <p class="concept-explanation">
+          <code>Scanner</code> is part of <code>java.util</code> and provides methods like
+          <code>nextInt()</code> to read integers, <code>nextDouble()</code> for decimals,
+          and <code>next()</code> for strings. It connects the program to the user.
+        </p>
+        <pre class="concept-example"><span class="tk-type">Scanner</span> <span class="tk-var">sc</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-fn">Scanner</span><span class="tk-punc">(</span><span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">in</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+<span class="tk-type">int</span> <span class="tk-var">n</span> <span class="tk-op">=</span> <span class="tk-var">sc</span><span class="tk-punc">.</span><span class="tk-fn">nextInt</span><span class="tk-punc">()</span><span class="tk-punc">;</span></pre>
+      </article>
+
+      <!-- % -->
+      <article class="concept-card">
+        <div class="concept-header">
+          <span class="concept-name">% (modulo)</span>
+          <span class="badge badge-orange">Operator</span>
+        </div>
+        <p class="concept-def">Returns the remainder of an integer division.</p>
+        <p class="concept-explanation">
+          If <code>a % b == 0</code>, then <code>a</code> is exactly divisible by
+          <code>b</code> — making it a multiple. This is how the program identifies
+          multiples of a given number inside the array.
+        </p>
+        <pre class="concept-example"><span class="tk-num">10</span> <span class="tk-op">%</span> <span class="tk-num">3</span> <span class="tk-op">=</span> <span class="tk-num">1</span>    <span class="tk-cm">// not a multiple</span>
+<span class="tk-num">12</span> <span class="tk-op">%</span> <span class="tk-num">3</span> <span class="tk-op">=</span> <span class="tk-num">0</span>    <span class="tk-cm">// IS a multiple of 3</span></pre>
+      </article>
+
+    </div><!-- /concepts-grid -->
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     PROGRAM FLOW
+     ============================================================ -->
+<section id="flow" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Logic</p>
+    <h2 class="section-title">Program Flow</h2>
+    <p class="section-subtitle">
+      The Java program follows a clear, sequential set of steps. Here is how each
+      operation builds on the previous one.
+    </p>
+
+    <div class="flow-timeline" aria-label="Program steps">
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">1</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Create the vector</h3>
+          <p class="flow-step-desc">
+            Declare and allocate memory for an integer array of exactly 15 elements.
+            All cells are initialized to 0 by default.
+          </p>
+          <pre class="flow-step-code"><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">vector</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-num">15</span><span class="tk-punc">]</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">2</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Fill with values between 10 and 100</h3>
+          <p class="flow-step-desc">
+            Use a <code>for</code> loop and a <code>Scanner</code> to prompt the user to
+            enter 15 valid integers. A validation check ensures each value is within range.
+          </p>
+          <pre class="flow-step-code"><span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">vector</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span>
+  <span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-var">sc</span><span class="tk-punc">.</span><span class="tk-fn">nextInt</span><span class="tk-punc">()</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">3</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Display the vector</h3>
+          <p class="flow-step-desc">
+            Call <code>mostrarVector()</code> to print every element with its index
+            so the user can see the full contents of the array.
+          </p>
+          <pre class="flow-step-code"><span class="tk-fn">mostrarVector</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">4</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Search for a value</h3>
+          <p class="flow-step-desc">
+            Ask the user for a target value and call <code>buscarValor()</code> which
+            traverses the array and returns <code>true</code> if the value exists.
+          </p>
+          <pre class="flow-step-code"><span class="tk-type">boolean</span> <span class="tk-var">found</span> <span class="tk-op">=</span> <span class="tk-fn">buscarValor</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">,</span> <span class="tk-var">target</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">5</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Find maximum and minimum values</h3>
+          <p class="flow-step-desc">
+            <code>obtenerMayor()</code> and <code>obtenerMenor()</code> each traverse the
+            array once, tracking the highest or lowest value seen so far.
+          </p>
+          <pre class="flow-step-code"><span class="tk-type">int</span> <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-fn">obtenerMayor</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+<span class="tk-type">int</span> <span class="tk-var">menor</span> <span class="tk-op">=</span> <span class="tk-fn">obtenerMenor</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">6</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Calculate sum and average</h3>
+          <p class="flow-step-desc">
+            <code>sumarVector()</code> adds all elements together.
+            <code>calcularPromedio()</code> divides the sum by the number of elements,
+            returning a <code>double</code> for precision.
+          </p>
+          <pre class="flow-step-code"><span class="tk-type">int</span>    <span class="tk-var">sum</span> <span class="tk-op">=</span> <span class="tk-fn">sumarVector</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+<span class="tk-type">double</span> <span class="tk-var">avg</span> <span class="tk-op">=</span> <span class="tk-fn">calcularPromedio</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">7</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Show multiples of a given number</h3>
+          <p class="flow-step-desc">
+            Ask the user for a divisor and call <code>mostrarMultiplos()</code>. It prints
+            every element whose remainder when divided by the divisor is zero.
+          </p>
+          <pre class="flow-step-code"><span class="tk-fn">mostrarMultiplos</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">,</span> <span class="tk-var">divisor</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-number" aria-hidden="true">8</div>
+        <div class="flow-step-content">
+          <h3 class="flow-step-title">Build a filtered vector (values &gt; average)</h3>
+          <p class="flow-step-desc">
+            <code>crearVectorMayoresPromedio()</code> counts qualifying elements, allocates
+            a new array of the right size, then fills it with elements that exceed
+            the computed average.
+          </p>
+          <pre class="flow-step-code"><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">filtered</span> <span class="tk-op">=</span>
+  <span class="tk-fn">crearVectorMayoresPromedio</span><span class="tk-punc">(</span><span class="tk-var">vector</span><span class="tk-punc">)</span><span class="tk-punc">;</span></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     METHODS
+     ============================================================ -->
+<section id="methods" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">API Reference</p>
+    <h2 class="section-title">Class OperacionesVector – Methods</h2>
+    <p class="section-subtitle">
+      Each method encapsulates a single, well-defined operation on the array.
+      Below you will find its signature, purpose, explanation, and annotated code.
+    </p>
+
+    <div class="methods-grid">
+
+      <!-- mostrarVector -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">mostrarVector</span>
+          <span class="badge badge-blue">void</span>
+        </div>
+        <p class="method-purpose">Display all elements</p>
+        <p class="method-desc">
+          Iterates over every cell and prints its index and value, giving the user a
+          clear view of the entire array contents.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">void</span> <span class="tk-fn">mostrarVector</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"Vector:"</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span>
+      <span class="tk-str">"v["</span> <span class="tk-op">+</span> <span class="tk-var">i</span> <span class="tk-op">+</span> <span class="tk-str">"] = "</span> <span class="tk-op">+</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Essential for debugging and verifying that the vector was filled correctly before
+          running further operations.
+        </p>
+      </article>
+
+      <!-- buscarValor -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">buscarValor</span>
+          <span class="badge badge-purple">boolean</span>
+        </div>
+        <p class="method-purpose">Search for a specific value</p>
+        <p class="method-desc">
+          Traverses the array looking for a target value. Uses a boolean flag
+          <code>encontro</code> that starts as <code>false</code> and flips to
+          <code>true</code> as soon as the value is found.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">boolean</span> <span class="tk-fn">buscarValor</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">,</span> <span class="tk-type">int</span> <span class="tk-var">valor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">boolean</span> <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">false</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">==</span> <span class="tk-var">valor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+      <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">true</span><span class="tk-punc">;</span>
+    <span class="tk-punc">}</span>
+  <span class="tk-punc">}</span>
+  <span class="tk-kw">return</span> <span class="tk-var">encontro</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Linear search is fundamental in computer science. This pattern appears in nearly
+          every program that needs to check membership in a collection.
+        </p>
+      </article>
+
+      <!-- obtenerMayor -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">obtenerMayor</span>
+          <span class="badge badge-green">int</span>
+        </div>
+        <p class="method-purpose">Find the maximum value</p>
+        <p class="method-desc">
+          Starts by assuming the first element is the maximum. Then compares each
+          subsequent element; if it is larger, it becomes the new maximum.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">int</span> <span class="tk-fn">obtenerMayor</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">int</span> <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">mayor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+      <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+    <span class="tk-punc">}</span>
+  <span class="tk-punc">}</span>
+  <span class="tk-kw">return</span> <span class="tk-var">mayor</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          The "running maximum" pattern is reused throughout computing — in sorting
+          algorithms, data analysis, and competitive programming.
+        </p>
+      </article>
+
+      <!-- obtenerMenor -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">obtenerMenor</span>
+          <span class="badge badge-green">int</span>
+        </div>
+        <p class="method-purpose">Find the minimum value</p>
+        <p class="method-desc">
+          Identical logic to <code>obtenerMayor</code> but the comparison is reversed:
+          an element replaces the current minimum only if it is <em>smaller</em>.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">int</span> <span class="tk-fn">obtenerMenor</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">int</span> <span class="tk-var">menor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&lt;</span> <span class="tk-var">menor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+      <span class="tk-var">menor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+    <span class="tk-punc">}</span>
+  <span class="tk-punc">}</span>
+  <span class="tk-kw">return</span> <span class="tk-var">menor</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Finding range extremes (min and max) is required in statistics, data validation,
+          and normalizing data before analysis.
+        </p>
+      </article>
+
+      <!-- sumarVector -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">sumarVector</span>
+          <span class="badge badge-green">int</span>
+        </div>
+        <p class="method-purpose">Compute the total sum</p>
+        <p class="method-desc">
+          Accumulates every element into a running total starting at zero.
+          The result is an integer sum of all 15 values.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">int</span> <span class="tk-fn">sumarVector</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">int</span> <span class="tk-var">suma</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">suma</span> <span class="tk-op">+=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+  <span class="tk-punc">}</span>
+  <span class="tk-kw">return</span> <span class="tk-var">suma</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Aggregation is one of the most common operations in data processing.
+          This is the building block for averages, totals, and many statistical measures.
+        </p>
+      </article>
+
+      <!-- calcularPromedio -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">calcularPromedio</span>
+          <span class="badge badge-orange">double</span>
+        </div>
+        <p class="method-purpose">Calculate the arithmetic average</p>
+        <p class="method-desc">
+          Calls <code>sumarVector</code> internally, then divides by the array length.
+          The cast to <code>double</code> ensures decimal precision is not lost.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">double</span> <span class="tk-fn">calcularPromedio</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">return</span> <span class="tk-punc">(</span><span class="tk-type">double</span><span class="tk-punc">)</span> <span class="tk-fn">sumarVector</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">)</span>
+       <span class="tk-op">/</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          The average is used to filter the data in the final method. Without the
+          <code>(double)</code> cast, integer division would truncate the decimal part.
+        </p>
+      </article>
+
+      <!-- mostrarMultiplos -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">mostrarMultiplos</span>
+          <span class="badge badge-blue">void</span>
+        </div>
+        <p class="method-purpose">Print elements that are multiples of a given number</p>
+        <p class="method-desc">
+          Uses the modulo operator <code>%</code> to test each element. A boolean flag
+          <code>encontro</code> tracks whether at least one multiple was found.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">void</span> <span class="tk-fn">mostrarMultiplos</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">,</span> <span class="tk-type">int</span> <span class="tk-var">num</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">boolean</span> <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">false</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">%</span> <span class="tk-var">num</span> <span class="tk-op">==</span> <span class="tk-num">0</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+      <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+      <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">true</span><span class="tk-punc">;</span>
+    <span class="tk-punc">}</span>
+  <span class="tk-punc">}</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-op">!</span><span class="tk-var">encontro</span><span class="tk-punc">)</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"None found."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Divisibility testing with <code>%</code> is used in many real scenarios:
+          identifying even numbers, separating records by category, implementing pagination.
+        </p>
+      </article>
+
+      <!-- crearVectorMayoresPromedio -->
+      <article class="method-card">
+        <div class="method-header">
+          <span class="method-name">crearVectorMayoresPromedio</span>
+          <span class="badge badge-orange">int[]</span>
+        </div>
+        <p class="method-purpose">Build a new array with values above the average</p>
+        <p class="method-desc">
+          Makes two passes: the first counts how many elements exceed the average
+          (to allocate correctly), the second fills the new array using an index
+          variable <code>j</code>.
+        </p>
+        <div class="method-code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">Java</span>
+            <button class="copy-btn" aria-label="Copy code">Copy</button>
+          </div>
+          <div class="code-block-body"><span class="tk-kw">public</span> <span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-fn">crearVectorMayoresPromedio</span><span class="tk-punc">(</span><span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">double</span> <span class="tk-var">prom</span> <span class="tk-op">=</span> <span class="tk-fn">calcularPromedio</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+  <span class="tk-type">int</span> <span class="tk-var">contador</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">prom</span><span class="tk-punc">)</span> <span class="tk-var">contador</span><span class="tk-op">++</span><span class="tk-punc">;</span>
+
+  <span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">result</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-var">contador</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+  <span class="tk-type">int</span> <span class="tk-var">j</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>
+  <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span>
+    <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">prom</span><span class="tk-punc">)</span>
+      <span class="tk-var">result</span><span class="tk-punc">[</span><span class="tk-var">j</span><span class="tk-op">++</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+
+  <span class="tk-kw">return</span> <span class="tk-var">result</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+        </div>
+        <p class="method-usefulness">
+          Filtering data based on a computed threshold (like an average) is the basis of
+          data analysis, recommendation systems, and classification algorithms.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     CODE WALKTHROUGH
+     ============================================================ -->
+<section id="walkthrough" class="section walkthrough-section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Examples</p>
+    <h2 class="section-title">Code Walkthrough</h2>
+    <p class="section-subtitle">
+      Select a topic below to explore each code pattern with a detailed explanation.
+    </p>
+
+    <div class="walkthrough-tabs" role="tablist" aria-label="Code walkthrough topics">
+      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="declaration">Declaration</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="fill">Fill Loop</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="search">Search</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="maxmin">Max / Min</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="sum">Sum</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="average">Average</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="multiples">Multiples</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="filter">Filter</button>
+    </div>
+
+    <!-- Declaration -->
+    <div class="tab-panel active" data-panel="declaration" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Vector declaration and initialization</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-cm">// Step 1: Declare the type and name</span>
+<span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">vector</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Step 2: Allocate 15 cells in memory</span>
+<span class="tk-var">vector</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-num">15</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Or both in one line (most common)</span>
+<span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">vector</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-num">15</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Immediately after, all cells equal 0:</span>
+<span class="tk-cm">// vector[0]=0, vector[1]=0, ..., vector[14]=0</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>Why <code>new int[15]</code>?</h4>
+        <p>
+          The <code>new</code> keyword asks the JVM to reserve a contiguous block of
+          memory large enough for 15 integers (60 bytes on most platforms, since each
+          <code>int</code> is 4 bytes). All cells are zero-initialized by default.
+          The array's size is <em>fixed</em> — you cannot add or remove elements later.
+        </p>
+      </div>
+    </div>
+
+    <!-- Fill Loop -->
+    <div class="tab-panel" data-panel="fill" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Filling the vector with user input (range 10–100)</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-type">Scanner</span> <span class="tk-var">sc</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-fn">Scanner</span><span class="tk-punc">(</span><span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">in</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">vector</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-type">int</span> <span class="tk-var">val</span><span class="tk-punc">;</span>
+  <span class="tk-kw">do</span> <span class="tk-punc">{</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">print</span><span class="tk-punc">(</span><span class="tk-str">"Enter value "</span> <span class="tk-op">+</span> <span class="tk-punc">(</span><span class="tk-var">i</span><span class="tk-op">+</span><span class="tk-num">1</span><span class="tk-punc">)</span> <span class="tk-op">+</span> <span class="tk-str">" (10-100): "</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+    <span class="tk-var">val</span> <span class="tk-op">=</span> <span class="tk-var">sc</span><span class="tk-punc">.</span><span class="tk-fn">nextInt</span><span class="tk-punc">()</span><span class="tk-punc">;</span>
+  <span class="tk-punc">}</span> <span class="tk-kw">while</span> <span class="tk-punc">(</span><span class="tk-var">val</span> <span class="tk-op">&lt;</span> <span class="tk-num">10</span> <span class="tk-op">||</span> <span class="tk-var">val</span> <span class="tk-op">&gt;</span> <span class="tk-num">100</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+  <span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-var">val</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>The do–while for input validation</h4>
+        <p>
+          A <code>do–while</code> loop runs at least once, which is ideal for reading
+          input: prompt the user, read the value, check if it is valid.
+          If it is out of range (below 10 or above 100), the loop repeats.
+          Only a valid value advances the outer <code>for</code> loop to the next index.
+        </p>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="tab-panel" data-panel="search" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Linear search algorithm</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-type">boolean</span> <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">false</span><span class="tk-punc">;</span>  <span class="tk-cm">// assume not found</span>
+
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">==</span> <span class="tk-var">valor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">true</span><span class="tk-punc">;</span>  <span class="tk-cm">// flip the flag</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span>
+
+<span class="tk-kw">return</span> <span class="tk-var">encontro</span><span class="tk-punc">;</span>  <span class="tk-cm">// true if found, false otherwise</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>The boolean flag pattern</h4>
+        <p>
+          We initialise <code>encontro</code> as <code>false</code> ("not found yet").
+          Inside the loop, if any element matches the target, we flip it to
+          <code>true</code>. The loop always checks every element — this ensures we find
+          all occurrences, not just the first. Finally, <code>return encontro</code>
+          tells the caller the result.
+        </p>
+      </div>
+    </div>
+
+    <!-- Max / Min -->
+    <div class="tab-panel" data-panel="maxmin" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Finding maximum and minimum values</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-cm">// Maximum</span>
+<span class="tk-type">int</span> <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span><span class="tk-punc">;</span>  <span class="tk-cm">// start with first element</span>
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">mayor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">mayor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>  <span class="tk-cm">// update if larger</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span>
+
+<span class="tk-cm">// Minimum (only the comparison flips)</span>
+<span class="tk-type">int</span> <span class="tk-var">menor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-num">0</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&lt;</span> <span class="tk-var">menor</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">menor</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>  <span class="tk-cm">// update if smaller</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>Running maximum / running minimum</h4>
+        <p>
+          Both algorithms start by assuming the answer is the first element. The loop
+          then starts from index <strong>1</strong> (because index 0 was already used
+          as the initial assumption). Each iteration, if the current element is more
+          extreme than the current answer, the answer is updated. After the loop,
+          <code>mayor</code> / <code>menor</code> holds the global extreme.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sum -->
+    <div class="tab-panel" data-panel="sum" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Accumulating the sum of all elements</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-type">int</span> <span class="tk-var">suma</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>  <span class="tk-cm">// accumulator starts at zero</span>
+
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-var">suma</span> <span class="tk-op">+=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>  <span class="tk-cm">// same as: suma = suma + v[i]</span>
+<span class="tk-punc">}</span>
+
+<span class="tk-kw">return</span> <span class="tk-var">suma</span><span class="tk-punc">;</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>The accumulator pattern</h4>
+        <p>
+          <code>suma</code> starts at 0. On every iteration, the current element's value
+          is <em>added to</em> the running total. <code>+=</code> is shorthand for
+          <code>suma = suma + v[i]</code>. After the loop, <code>suma</code> holds the
+          complete total of all 15 values.
+        </p>
+      </div>
+    </div>
+
+    <!-- Average -->
+    <div class="tab-panel" data-panel="average" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Computing the arithmetic average</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-cm">// Without cast: integer division truncates the decimal</span>
+<span class="tk-type">int</span> <span class="tk-var">bad</span> <span class="tk-op">=</span> <span class="tk-fn">sumarVector</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-op">/</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span>   <span class="tk-cm">// ❌ loses .5, .3, etc.</span>
+
+<span class="tk-cm">// With cast: promotes numerator to double before dividing</span>
+<span class="tk-type">double</span> <span class="tk-var">promedio</span> <span class="tk-op">=</span>
+  <span class="tk-punc">(</span><span class="tk-type">double</span><span class="tk-punc">)</span> <span class="tk-fn">sumarVector</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">)</span> <span class="tk-op">/</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span>  <span class="tk-cm">// ✅</span>
+
+<span class="tk-kw">return</span> <span class="tk-var">promedio</span><span class="tk-punc">;</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>Why cast to <code>double</code>?</h4>
+        <p>
+          In Java, dividing two integers always gives an integer result. If the sum is
+          825 and the length is 15, <code>825 / 15 = 55</code> — exact in this case.
+          But <code>826 / 15 = 55</code> (not 55.066…). The <code>(double)</code> cast
+          converts the sum to a floating-point number before the division, preserving
+          decimal precision for the filter step.
+        </p>
+      </div>
+    </div>
+
+    <!-- Multiples -->
+    <div class="tab-panel" data-panel="multiples" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Detecting and displaying multiples</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-type">boolean</span> <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">false</span><span class="tk-punc">;</span>
+
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">%</span> <span class="tk-var">num</span> <span class="tk-op">==</span> <span class="tk-num">0</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>    <span class="tk-cm">// no remainder = multiple</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+    <span class="tk-var">encontro</span> <span class="tk-op">=</span> <span class="tk-kw">true</span><span class="tk-punc">;</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span>
+
+<span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-op">!</span><span class="tk-var">encontro</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"No multiples found."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+<span class="tk-punc">}</span></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>The modulo operator and the <code>encontro</code> flag</h4>
+        <p>
+          <code>v[i] % num == 0</code> is true when the element divides exactly by
+          <code>num</code> with no remainder — the definition of a multiple.
+          The <code>encontro</code> flag serves a secondary purpose: if the loop finishes
+          and no multiple was found, the program prints a helpful message instead of
+          producing empty output.
+        </p>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="tab-panel" data-panel="filter" role="tabpanel">
+      <div class="walkthrough-code-block">
+        <div class="walkthrough-code-header">
+          <span class="wc-title">Two-pass algorithm to build a filtered array</span>
+          <button class="copy-btn" aria-label="Copy code">Copy</button>
+        </div>
+        <div class="walkthrough-code-body"><span class="tk-type">double</span> <span class="tk-var">prom</span> <span class="tk-op">=</span> <span class="tk-fn">calcularPromedio</span><span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Pass 1: count how many elements exceed the average</span>
+<span class="tk-type">int</span> <span class="tk-var">contador</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">prom</span><span class="tk-punc">)</span> <span class="tk-var">contador</span><span class="tk-op">++</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Allocate the result array with the exact needed size</span>
+<span class="tk-type">int</span><span class="tk-punc">[]</span> <span class="tk-var">result</span> <span class="tk-op">=</span> <span class="tk-kw">new</span> <span class="tk-type">int</span><span class="tk-punc">[</span><span class="tk-var">contador</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+
+<span class="tk-cm">// Pass 2: fill the result array</span>
+<span class="tk-type">int</span> <span class="tk-var">j</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span>  <span class="tk-cm">// index for result[]</span>
+<span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">v</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+  <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">&gt;</span> <span class="tk-var">prom</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
+    <span class="tk-var">result</span><span class="tk-punc">[</span><span class="tk-var">j</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-var">v</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span><span class="tk-punc">;</span>
+    <span class="tk-var">j</span><span class="tk-op">++</span><span class="tk-punc">;</span>
+  <span class="tk-punc">}</span>
+<span class="tk-punc">}</span>
+
+<span class="tk-kw">return</span> <span class="tk-var">result</span><span class="tk-punc">;</span></pre></div>
+      </div>
+      <div class="walkthrough-explain">
+        <h4>Why two passes?</h4>
+        <p>
+          Java arrays have a fixed size: you must know the size <em>before</em> you
+          create them. The first pass counts qualifying elements (<code>contador</code>).
+          That count is used as the size for the new array. The second pass fills it,
+          using index <code>j</code> which increments independently of <code>i</code> —
+          <code>i</code> moves through <em>every</em> element; <code>j</code> only
+          advances when an element is actually copied.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     CODE ANALYSIS
+     ============================================================ -->
+<section id="analysis" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Deep Dive</p>
+    <h2 class="section-title">Code Analysis</h2>
+    <p class="section-subtitle">
+      Every construct used in this program has a specific role. Here is a focused
+      explanation of the most important ones.
+    </p>
+
+    <div class="analysis-grid">
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon blue" aria-hidden="true">🔁</div>
+          <span class="analysis-term">for loop</span>
+        </div>
+        <p class="analysis-desc">
+          The <code>for</code> loop is used in <em>every</em> method because every
+          operation on a vector requires visiting each element. The loop initialises
+          <code>i = 0</code>, checks <code>i &lt; v.length</code>, and increments
+          <code>i++</code> after each iteration. This guarantees exactly
+          <code>v.length</code> repetitions — no more, no less.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon green" aria-hidden="true">❓</div>
+          <span class="analysis-term">if condition</span>
+        </div>
+        <p class="analysis-desc">
+          <code>if</code> makes the program "decide" at runtime. It evaluates a boolean
+          expression and only executes its body when the result is <code>true</code>.
+          In this program, <code>if</code> checks for equality (<code>==</code>),
+          greater-than (<code>&gt;</code>), less-than (<code>&lt;</code>), and divisibility
+          (<code>% == 0</code>).
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon purple" aria-hidden="true">↩️</div>
+          <span class="analysis-term">return</span>
+        </div>
+        <p class="analysis-desc">
+          <code>return</code> ends the method's execution and sends a value back to
+          the caller. Without it, the caller cannot receive the result of the
+          computation. Methods that declare <code>void</code> use <code>return;</code>
+          (no value) or no <code>return</code> at all.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon orange" aria-hidden="true">➗</div>
+          <span class="analysis-term">% operator</span>
+        </div>
+        <p class="analysis-desc">
+          The modulo (or remainder) operator returns what is left over after integer
+          division. <code>18 % 5 = 3</code> because 18 ÷ 5 = 3 remainder 3.
+          When the result is exactly 0, the left operand is a multiple of the right.
+          This is the core of <code>mostrarMultiplos</code>.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon blue" aria-hidden="true">🚩</div>
+          <span class="analysis-term">encontro (boolean flag)</span>
+        </div>
+        <p class="analysis-desc">
+          <code>encontro</code> starts as <code>false</code> before the loop. Inside
+          the loop, if the condition is met, it is set to <code>true</code>. After the
+          loop, reading <code>encontro</code> tells you whether at least one matching
+          element was found. It is used in both the search and multiples methods.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon green" aria-hidden="true">🔢</div>
+          <span class="analysis-term">contador (counter)</span>
+        </div>
+        <p class="analysis-desc">
+          <code>contador</code> starts at 0 and increments (<code>contador++</code>)
+          each time an element satisfies the filter condition. Its final value tells
+          the program exactly how large the new result array needs to be, enabling
+          precise memory allocation without waste.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon purple" aria-hidden="true">📍</div>
+          <span class="analysis-term">index variable i</span>
+        </div>
+        <p class="analysis-desc">
+          <code>i</code> is the loop counter that acts as the current position inside
+          the array. It starts at 0 (the first cell) and goes up to
+          <code>v.length - 1</code> (the last cell). Every time the loop body runs,
+          <code>v[i]</code> refers to the element at the current position.
+        </p>
+      </div>
+
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <div class="analysis-icon teal" aria-hidden="true">📝</div>
+          <span class="analysis-term">auxiliary index j</span>
+        </div>
+        <p class="analysis-desc">
+          <code>j</code> is the "write position" in the result array. While <code>i</code>
+          iterates over <em>every</em> element of the source array, <code>j</code> only
+          advances when an element passes the filter test. This prevents "holes" (empty
+          cells) in the result array and keeps the filtered data contiguous.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     TROUBLESHOOTING
+     ============================================================ -->
+<section id="troubleshooting" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Help</p>
+    <h2 class="section-title">Common Questions</h2>
+    <p class="section-subtitle">
+      Answers to questions beginners frequently ask when studying this program.
+    </p>
+
+    <div class="trouble-grid">
+
+      <div class="trouble-item">
+        <p class="trouble-q">What exactly is a vector?</p>
+        <p class="trouble-a">
+          A vector is another name for a one-dimensional array. It is a numbered list
+          of values of the same type, stored together in memory. In Java, it is declared
+          as <code>int[] v = new int[n];</code>.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">Why does the for loop repeat exactly 15 times?</p>
+        <p class="trouble-a">
+          Because the condition <code>i &lt; v.length</code> is checked before every
+          iteration. Since <code>v.length</code> is 15 and <code>i</code> starts at 0,
+          the loop runs for <code>i = 0, 1, 2, …, 14</code> — exactly 15 times.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">Why does the index start at 0, not 1?</p>
+        <p class="trouble-a">
+          This is a Java (and C family) convention. The index represents an
+          <em>offset</em> from the start of the array. The first element is 0 offsets
+          away from the beginning, so its index is 0. This is how most programming
+          languages work.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">How do I avoid an ArrayIndexOutOfBoundsException?</p>
+        <p class="trouble-a">
+          Always use <code>i &lt; v.length</code> (not <code>i &lt;= v.length</code>)
+          as your loop condition. Remember the last valid index is
+          <code>v.length - 1</code>. Never hard-code the array size; use
+          <code>v.length</code> so the code adapts if the size changes.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">How do I read and understand the output?</p>
+        <p class="trouble-a">
+          Each <code>System.out.println()</code> prints one line. For the vector display,
+          you will see lines like <code>v[0] = 42</code>, meaning "the element at position
+          0 has the value 42". The search returns <code>true</code> or <code>false</code>.
+          The average is a decimal number.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">Why are there two loops in crearVectorMayoresPromedio?</p>
+        <p class="trouble-a">
+          The first loop counts how many elements pass the filter so a correctly-sized
+          array can be created. Java requires the size at creation time. The second loop
+          fills that array with the qualifying elements.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">What happens if no multiples are found?</p>
+        <p class="trouble-a">
+          The boolean flag <code>encontro</code> stays <code>false</code>. After the loop,
+          <code>if (!encontro)</code> catches this case and prints a message like
+          "No multiples found." — so the output is never empty or confusing.
+        </p>
+      </div>
+
+      <div class="trouble-item">
+        <p class="trouble-q">What does (double) do in calcularPromedio?</p>
+        <p class="trouble-a">
+          It is a <em>type cast</em>. Without it, Java performs integer division and
+          discards the fractional part. With the cast, the sum is temporarily treated as
+          a <code>double</code> before dividing, preserving decimal accuracy.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section id="glossary" class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label">Reference</p>
+    <h2 class="section-title">Glossary</h2>
+    <p class="section-subtitle">
+      Quick definitions for every technical term used in this guide.
+    </p>
+
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <p class="glossary-term">vector / array</p>
+        <p class="glossary-def">A fixed-size, ordered collection of values of the same data type, accessed by numeric index.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">index</p>
+        <p class="glossary-def">A zero-based integer that identifies the position of an element within an array.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">method</p>
+        <p class="glossary-def">A named, reusable block of code that performs a specific task and may return a result.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">parameter</p>
+        <p class="glossary-def">A variable declared in a method's signature that receives a value when the method is called.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">return</p>
+        <p class="glossary-def">A Java keyword that ends a method's execution and sends a value back to the caller.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">loop</p>
+        <p class="glossary-def">A control structure that repeats a block of code while a condition holds true.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">condition</p>
+        <p class="glossary-def">A boolean expression evaluated at runtime to decide whether a block of code executes.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">modulo (%)</p>
+        <p class="glossary-def">The remainder operator. <code>a % b</code> returns what is left after dividing a by b.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">boolean</p>
+        <p class="glossary-def">A data type that holds only <code>true</code> or <code>false</code>. Used for flags and conditions.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">Scanner</p>
+        <p class="glossary-def">A Java standard library class (<code>java.util.Scanner</code>) that reads input from the keyboard or other sources.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">counter</p>
+        <p class="glossary-def">A variable initialised to zero that is incremented each time a specific event occurs in a loop.</p>
+      </div>
+      <div class="glossary-item">
+        <p class="glossary-term">filtering</p>
+        <p class="glossary-def">The process of creating a new collection that includes only elements that satisfy a given condition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="nav-logo-icon" aria-hidden="true">☕</div>
+          Java Vectors
+        </div>
+        <p>
+          An educational documentation website about integer arrays in Java.
+          Designed to be clear, concise, and accessible to anyone starting
+          their programming journey.
+        </p>
+      </div>
+
+      <!-- Links: Sections -->
+      <div class="footer-links-col">
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#what-is-vector">What is a Vector?</a></li>
+          <li><a href="#key-concepts">Key Concepts</a></li>
+          <li><a href="#flow">Program Flow</a></li>
+          <li><a href="#methods">Methods</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Deep Dive -->
+      <div class="footer-links-col">
+        <h4>Deep Dive</h4>
+        <ul>
+          <li><a href="#walkthrough">Code Walkthrough</a></li>
+          <li><a href="#analysis">Code Analysis</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        Java Vectors — Educational project. Built with pure HTML, CSS, and JavaScript.
+        Hosted on GitHub Pages.
+      </p>
+      <p>
+        <span class="badge badge-green">✅ No build step required</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
