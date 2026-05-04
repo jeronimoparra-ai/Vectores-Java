@@ -78,14 +78,14 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     const text = codeEl.innerText || codeEl.textContent;
 
     navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✓ Copied';
+      btn.textContent = '✓ Copiado';
       btn.classList.add('copied');
       setTimeout(() => {
-        btn.textContent = 'Copy';
+        btn.textContent = 'Copiar';
         btn.classList.remove('copied');
       }, 2000);
     }).catch(() => {
-      // Fallback for older browsers
+      // Alternativa para navegadores más antiguos
       const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -95,10 +95,10 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
       ta.select();
       try { document.execCommand('copy'); } catch (_) { /* */ }
       document.body.removeChild(ta);
-      btn.textContent = '✓ Copied';
+      btn.textContent = '✓ Copiado';
       btn.classList.add('copied');
       setTimeout(() => {
-        btn.textContent = 'Copy';
+        btn.textContent = 'Copiar';
         btn.classList.remove('copied');
       }, 2000);
     });
