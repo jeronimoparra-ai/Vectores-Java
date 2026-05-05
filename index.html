@@ -848,7 +848,7 @@
     <span class="tk-punc">}</span>
   <span class="tk-punc">}</span>
   <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-op">!</span><span class="tk-var">encontro</span><span class="tk-punc">)</span>
-    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"None found."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"Sin coincidencias."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
 <span class="tk-punc">}</span></div>
         </div>
         <p class="method-usefulness">
@@ -965,7 +965,7 @@
 <span class="tk-kw">for</span> <span class="tk-punc">(</span><span class="tk-type">int</span> <span class="tk-var">i</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-punc">;</span> <span class="tk-var">i</span> <span class="tk-op">&lt;</span> <span class="tk-var">vector</span><span class="tk-punc">.</span><span class="tk-var">length</span><span class="tk-punc">;</span> <span class="tk-var">i</span><span class="tk-op">++</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
   <span class="tk-type">int</span> <span class="tk-var">val</span><span class="tk-punc">;</span>
   <span class="tk-kw">do</span> <span class="tk-punc">{</span>
-    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">print</span><span class="tk-punc">(</span><span class="tk-str">"Enter value "</span> <span class="tk-op">+</span> <span class="tk-punc">(</span><span class="tk-var">i</span><span class="tk-op">+</span><span class="tk-num">1</span><span class="tk-punc">)</span> <span class="tk-op">+</span> <span class="tk-str">" (10-100): "</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+    <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">print</span><span class="tk-punc">(</span><span class="tk-str">"Ingresa el valor "</span> <span class="tk-op">+</span> <span class="tk-punc">(</span><span class="tk-var">i</span><span class="tk-op">+</span><span class="tk-num">1</span><span class="tk-punc">)</span> <span class="tk-op">+</span> <span class="tk-str">" (10-100): "</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
     <span class="tk-var">val</span> <span class="tk-op">=</span> <span class="tk-var">sc</span><span class="tk-punc">.</span><span class="tk-fn">nextInt</span><span class="tk-punc">()</span><span class="tk-punc">;</span>
   <span class="tk-punc">}</span> <span class="tk-kw">while</span> <span class="tk-punc">(</span><span class="tk-var">val</span> <span class="tk-op">&lt;</span> <span class="tk-num">10</span> <span class="tk-op">||</span> <span class="tk-var">val</span> <span class="tk-op">&gt;</span> <span class="tk-num">100</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
   <span class="tk-var">vector</span><span class="tk-punc">[</span><span class="tk-var">i</span><span class="tk-punc">]</span> <span class="tk-op">=</span> <span class="tk-var">val</span><span class="tk-punc">;</span>
@@ -1117,7 +1117,7 @@
 <span class="tk-punc">}</span>
 
 <span class="tk-kw">if</span> <span class="tk-punc">(</span><span class="tk-op">!</span><span class="tk-var">encontro</span><span class="tk-punc">)</span> <span class="tk-punc">{</span>
-  <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"No multiples found."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
+  <span class="tk-var">System</span><span class="tk-punc">.</span><span class="tk-var">out</span><span class="tk-punc">.</span><span class="tk-fn">println</span><span class="tk-punc">(</span><span class="tk-str">"No se encontraron múltiplos."</span><span class="tk-punc">)</span><span class="tk-punc">;</span>
 <span class="tk-punc">}</span></div>
       </div>
       <div class="walkthrough-explain">
@@ -1379,7 +1379,7 @@
         <p class="trouble-a">
           La bandera booleana <code>encontro</code> permanece en <code>false</code>. Después
           del bucle, <code>if (!encontro)</code> captura este caso e imprime un mensaje como
-          "No multiples found." — así la salida nunca está vacía ni resulta confusa.
+          "No se encontraron múltiplos." — así la salida nunca está vacía ni resulta confusa.
         </p>
       </div>
 
