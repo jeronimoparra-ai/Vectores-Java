@@ -962,8 +962,23 @@ li { margin-bottom: .4rem; }
   border-color: var(--accent-primary);
 }
 
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+/* Tab panel fade transition */
+.tab-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.tab-panel[style*="display: block"],
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .walkthrough-code-block {
   border-radius: var(--radius-lg);
@@ -1288,8 +1303,158 @@ li { margin-bottom: .4rem; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(213,62,15,.45); }
+  70%  { box-shadow: 0 0 0 10px rgba(213,62,15,0); }
+  100% { box-shadow: 0 0 0 0 rgba(213,62,15,0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(213,62,15,.2); }
+  50%       { box-shadow: 0 0 22px rgba(213,62,15,.55); }
+}
+
+@keyframes spinOnce {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 .fade-in-up {
   animation: fadeInUp .5s ease both;
+}
+
+/* Hero entrance */
+.hero-grid > :first-child {
+  animation: slideInLeft .7s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.hero-grid > :last-child {
+  animation: slideInRight .7s cubic-bezier(.22,.68,0,1.2) .15s both;
+}
+
+/* Floating facts card */
+.facts-card {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Shimmer on code-block headers */
+.code-block-header,
+.walkthrough-code-header,
+.syntax-code-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.code-block-header::after,
+.walkthrough-code-header::after,
+.syntax-code-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(238,217,185,.06) 50%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 3.5s infinite linear;
+  pointer-events: none;
+}
+
+/* Pulsing ring on flow step numbers */
+.flow-step-number {
+  animation: pulseRing 2.8s ease-out infinite;
+}
+
+.flow-step:hover .flow-step-number {
+  animation: none;
+}
+
+/* Nav logo icon spin on hover */
+.nav-logo:hover .nav-logo-icon {
+  animation: spinOnce .4s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--gradient-accent);
+  transition: width .1s linear;
+  z-index: 101;
+}
+
+/* Staggered entrance delays for grid children */
+.concepts-grid .concept-card:nth-child(2)  { animation-delay: .07s; }
+.concepts-grid .concept-card:nth-child(3)  { animation-delay: .14s; }
+.concepts-grid .concept-card:nth-child(4)  { animation-delay: .21s; }
+.concepts-grid .concept-card:nth-child(5)  { animation-delay: .28s; }
+.concepts-grid .concept-card:nth-child(6)  { animation-delay: .35s; }
+
+.methods-grid .method-card:nth-child(2)   { animation-delay: .1s; }
+.methods-grid .method-card:nth-child(3)   { animation-delay: .2s; }
+.methods-grid .method-card:nth-child(4)   { animation-delay: .3s; }
+
+.analysis-grid .analysis-card:nth-child(2) { animation-delay: .08s; }
+.analysis-grid .analysis-card:nth-child(3) { animation-delay: .16s; }
+.analysis-grid .analysis-card:nth-child(4) { animation-delay: .24s; }
+.analysis-grid .analysis-card:nth-child(5) { animation-delay: .32s; }
+.analysis-grid .analysis-card:nth-child(6) { animation-delay: .40s; }
+
+.glossary-grid .glossary-item:nth-child(2)  { animation-delay: .06s; }
+.glossary-grid .glossary-item:nth-child(3)  { animation-delay: .12s; }
+.glossary-grid .glossary-item:nth-child(4)  { animation-delay: .18s; }
+.glossary-grid .glossary-item:nth-child(5)  { animation-delay: .24s; }
+.glossary-grid .glossary-item:nth-child(6)  { animation-delay: .30s; }
+.glossary-grid .glossary-item:nth-child(7)  { animation-delay: .36s; }
+.glossary-grid .glossary-item:nth-child(8)  { animation-delay: .42s; }
+
+/* Array cells cascade on load */
+.array-cell:nth-child(1) .cell-box { animation: fadeInUp .4s .05s ease both; }
+.array-cell:nth-child(2) .cell-box { animation: fadeInUp .4s .15s ease both; }
+.array-cell:nth-child(3) .cell-box { animation: fadeInUp .4s .25s ease both; }
+.array-cell:nth-child(4) .cell-box { animation: fadeInUp .4s .35s ease both; }
+.array-cell:nth-child(5) .cell-box { animation: fadeInUp .4s .45s ease both; }
+.array-cell:nth-child(6) .cell-box { animation: fadeInUp .4s .55s ease both; }
+.array-cell:nth-child(7) .cell-box { animation: fadeInUp .4s .65s ease both; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 
 /* ---------- Back to top ---------- */
@@ -1311,14 +1476,11 @@ li { margin-bottom: .4rem; }
   box-shadow: var(--shadow-md);
   opacity: 0;
   pointer-events: none;
-  transition: all var(--transition);
+  transition: opacity var(--transition), transform var(--transition), background var(--transition);
   z-index: 99;
 }
 
-#back-to-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
+/* .visible rule lives in the animations section */
 
 #back-to-top:hover {
   background: #be3509;
