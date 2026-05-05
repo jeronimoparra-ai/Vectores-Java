@@ -226,6 +226,8 @@ if (hero && heroDots) {
 
     heroDots.style.transform = `translate(${dx * 18}px, ${dy * 12}px)`;
     if (heroFactsCard) {
+      // The card floats up by 10px (float animation baseline) and shifts
+      // slightly opposite to the cursor: 6px vertical, 4px horizontal.
       heroFactsCard.style.transform = `translateY(calc(-10px + ${dy * -6}px)) translateX(${dx * -4}px)`;
     }
   }, { passive: true });
